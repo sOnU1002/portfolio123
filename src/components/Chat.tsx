@@ -11,7 +11,7 @@ export default function Chat() {
 
   const handleResumeDownload = () => {
     // Replace with the actual resume URL
-    const resumeURL = "/path/to/your/resume.pdf";
+    const resumeURL = "public/resume.pdf";
     const link = document.createElement("a");
     link.href = resumeURL;
     link.download = "Resume.pdf";
