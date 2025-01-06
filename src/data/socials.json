@@ -1,0 +1,19 @@
+{
+  "socials": [
+    {
+      "name": "LinkedIn",
+      "href": "https://www.linkedin.com/in/saket-nigam-103276262",
+      "icon": "linkedin"
+    },
+    {
+      "name": "GitHub",
+      "href": "https://github.com/sOnU1002",
+      "icon": "github"
+    },
+    {
+      "name": "Email",
+      "href": "mailto:sjnigam10@gmail.com",
+      "icon": "mail"
+    }
+  ]
+}

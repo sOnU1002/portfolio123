@@ -1,0 +1,93 @@
+{
+  "projects": [
+    {
+      "name": "Climate prediction- Weatherly",
+      "description": "Developed Weatherly, a user-friendly weather application with real-time updates, detailed forecasts, and an integrated chatbot for personalized weather queries.",
+      "image": "/2.png",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "Docker",
+        "React",
+        "VectorDB",
+        "Google Gemini",
+        "HTML",
+        "Javascript",
+        "CSS"
+        
+      ],
+      "links": [
+        {
+          "name": "Source",
+          "href": "https://github.com/sOnU1002/Weatherly",
+          "icon": "github"
+        }
+      ]
+    },
+    {
+      "name": "Cube",
+      "description": "Cube helps organize educational chat groups by introducing sub-grouping, making it easier to find important messages like announcements and timetables. It reduces clutter, improving communication for both educators and students.",
+      "href": "https://cubechat.netlify.app/",
+      "image": "/7.png",
+      "tags": [
+        "NextJS",
+        "TailwindCSS",
+        "React",
+        "Express.js",
+        "Netlify",
+        "Javascript"
+      ],
+      "links": [
+        {
+          "name": "Website",
+          "href": "https://cubechat.netlify.app/",
+          "icon": "globe"
+        }
+      ]
+    },
+    {
+      "name": "Discern",
+      "description": "An AI-powered solution for accurate disease prediction and noise elimination using filters in Chest X-rays. Providing a radiologist-like second opinion, it enhances reliability in diagnosing common chest diseases.",
+      "href": "https://tedawf-dot-com.netlify.app",
+      "image": "/4.png",
+      "tags": ["Python", "Gradio"],
+      "links": [
+       
+        {
+          "name": "Source",
+          "href": "https://github.com/sOnU1002/DISCERN",
+          "icon": "github"
+        }
+      ]
+    },
+    {
+      "name": "Equikey (Final Year)",
+      "description": "A Blockchain Based Real Estate Marketplace.",
+      "href": "https://github.com/Kunj-Pate1/EquiKey",
+      "image": "/8.png",
+      "tags": ["Solidity", "Javascript", "Next.js", "Typescript"],
+      "links": [
+        
+        {
+          "name": "Equikey",
+          "href": "https://github.com/Kunj-Pate1/EquiKey",
+          "icon": "github"
+        }
+      ]
+    },
+    {
+      "name": "Notice Board (2nd Year)",
+      "description": "Online Notice Board streamlines college communication by providing a centralized platform for real-time updates on notices, eliminating issues like overlapping posts and missed information",
+      "href": "https://github.com/sOnU1002/Notice-Board",
+      "image": "/5.png",
+      "tags": ["HTML", "Bootstrap", "CSS", "PHP"],
+      "links": [
+        {
+          "name": "Trailer",
+          "href": "https://github.com/sOnU1002/Notice-Board",
+          "icon": "github"
+        }
+      ]
+    }
+  ]
+}

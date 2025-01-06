@@ -1,0 +1,38 @@
+{
+  "education": [
+    {
+      "name": "University of Mumbai",
+      "href": "https://www.apsit.edu.in/",
+      "title": "BS in Computer Science in Real-Time Interactive Simulation",
+      "logo": "/apsit.jpg",
+      "start": "Feb 2021",
+      "end": "Apr 2024",
+      "description": [
+        "Graduated with a Minor in AIML",
+        "Executive in IIT Bombay",
+        "3-time Hackathon Winner"
+      ],
+      "links": [
+        {
+          "name": "Final Year Project",
+          "href": "https://github.com/Kunj-Pate1/EquiKey",
+          "icon": "globe"
+        },
+        {
+          "name": "2nd Year Project",
+          "href": "https://github.com/sOnU1002/Notice-Board",
+          "icon": "globe"
+        }
+      ]
+    },
+    {
+      "name": "Mumbai University",
+      "href": "https://www.apsit.edu.in/",
+      "title": "Honor and Minor in Artificial Intelligence and Machine Learning",
+      "logo": "/apsit.jpg",
+      "start": "Apr 2014",
+      "end": "May 2017",
+      "description": []
+    }
+  ]
+}

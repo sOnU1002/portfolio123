@@ -1,0 +1,27 @@
+{
+  "career": [
+    {
+      "name": "Smart Tech LLC",
+      "href": "https://smarttechks.com/",
+      "title": "Data & AI Engineer",
+      "logo": "/1.png",
+      "start": "Apr 2023",
+      "description": [
+        "Spearheaded the development of an AI-powered healthcare application, integrating machine learning models for accurate medical diagnosis and real-time data analysis.",
+        "Utilized advanced cloud technologies, including Microsoft Azure, Snowflake, and Databricks, to optimize data processing, ensure scalability, and streamline application deployment."
+      ]
+    },
+    {
+      "name": "Foxus",
+      "href": "",
+      "title": "Frontend Developer",
+      "logo": "public/1.jpg",
+      "start": "Dec 2023",
+      "end": "Jan 2024",
+      "description": [
+        "Played a key role in designing and developing dynamic, user-friendly web applications using React, JavaScript, and CSS, ensuring cross-platform compatibility.",
+        "Focused on delivering exceptional user experiences by creating responsive interfaces and implementing seamless interactive features."
+      ]
+    }
+  ]
+}
