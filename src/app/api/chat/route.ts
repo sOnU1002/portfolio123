@@ -1,13 +1,10 @@
 import { getVectorStore } from "@/lib/vectordb";
-import { UpstashRedisCache } from "@langchain/community/caches/upstash_redis";
 import { AIMessage, HumanMessage } from "@langchain/core/messages";
 import {
   ChatPromptTemplate,
   MessagesPlaceholder,
   PromptTemplate,
 } from "@langchain/core/prompts";
-import { ChatOpenAI } from "@langchain/openai";
-import { Redis } from "@upstash/redis";
 import { LangChainStream, Message, StreamingTextResponse } from "ai";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { createHistoryAwareRetriever } from "langchain/chains/history_aware_retriever";
@@ -22,29 +19,10 @@ export async function POST(req: Request) {
 
     const { stream, handlers } = LangChainStream();
 
-    // store the same user questions
-    const cache = new UpstashRedisCache({
-      client: Redis.fromEnv(),
-    });
-
-    const chatModel = new ChatOpenAI({
-      model: "text-embedding-ada-002",
-      streaming: true,
-      callbacks: [handlers],
-      verbose: true, // logs to console
-      cache,
-      temperature: 0,
-    });
-
-    const rephraseModel = new ChatOpenAI({
-      model: "text-embedding-ada-002",
-      verbose: true,
-      cache,
-    });
-
+    // Create retriever from the vector store
     const retriever = (await getVectorStore()).asRetriever();
 
-    // get a customised prompt based on chat history
+    // Get chat history from the messages
     const chatHistory = messages
       .slice(0, -1) // ignore latest message
       .map((msg: Message) =>
@@ -53,6 +31,7 @@ export async function POST(req: Request) {
           : new AIMessage(msg.content),
       );
 
+    // Prepare the rephrase prompt
     const rephrasePrompt = ChatPromptTemplate.fromMessages([
       new MessagesPlaceholder("chat_history"),
       ["user", "{input}"],
@@ -64,20 +43,17 @@ export async function POST(req: Request) {
       ],
     ]);
 
-    const historyAwareRetrievalChain = await createHistoryAwareRetriever({
-      llm: rephraseModel,
-      retriever,
-      rephrasePrompt,
-    });
+    // Create a history-aware retriever chain
+   
 
-    // final prompt
+    // Final system prompt
     const prompt = ChatPromptTemplate.fromMessages([
       [
         "system",
         "You are Ted Support, a friendly chatbot for Ted's personal developer portfolio website. " +
           "You are trying to convince potential employers to hire Ted as a software developer. " +
           "Be concise and only answer the user's questions based on the provided context below. " +
-          "Provide links to pages that contains relevant information about the topic from the given context. " +
+          "Provide links to pages that contain relevant information about the topic from the given context. " +
           "Format your messages in markdown.\n\n" +
           "Context:\n{context}",
       ],
@@ -85,29 +61,14 @@ export async function POST(req: Request) {
       ["user", "{input}"],
     ]);
 
-    const combineDocsChain = await createStuffDocumentsChain({
-      llm: chatModel,
-      prompt,
-      documentPrompt: PromptTemplate.fromTemplate(
-        "Page content:\n{page_content}",
-      ),
-      documentSeparator: "\n------\n",
-    });
+    // Create the document chain that processes retrieved documents
+    
 
-    // 1. retrievalChain converts the {input} into a vector
-    // 2. do a similarity search in the vector store and finds relevant documents
-    // 3. pairs the documents to createStuffDocumentsChain and put into {context}
-    // 4. send the updated prompt to chatgpt for a customised response
+    // Retrieve relevant documents and generate a response
+    
 
-    const retrievalChain = await createRetrievalChain({
-      combineDocsChain,
-      retriever: historyAwareRetrievalChain, // get the relevant documents based on chat history
-    });
-
-    retrievalChain.invoke({
-      input: latestMessage,
-      chat_history: chatHistory,
-    });
+    // Invoke the chain to generate the response
+   
 
     return new StreamingTextResponse(stream);
   } catch (error) {
