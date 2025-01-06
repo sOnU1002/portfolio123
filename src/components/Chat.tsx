@@ -11,7 +11,7 @@ export default function Chat() {
 
   const handleResumeDownload = () => {
     // Replace with the actual resume URL
-    const resumeURL = "public/resume.pdf";
+    const resumeURL = "public/resume.pdf"; 
     const link = document.createElement("a");
     link.href = resumeURL;
     link.download = "Resume.pdf";
@@ -34,7 +34,7 @@ export default function Chat() {
           </AccordionTrigger>
           <AccordionContent className="flex max-h-80 min-h-64 flex-col justify-between items-center p-4 space-y-4">
             <div className="text-sm text-gray-700">
-              "Coming soon! For now, please download my resume."
+              &quot;Coming soon! For now, please download my resume.&quot;
             </div>
             <button
               onClick={handleResumeDownload}
