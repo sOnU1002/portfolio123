@@ -13,6 +13,46 @@ import Link from "next/link";
 
 type Inputs = z.infer<typeof ContactFormSchema>;
 
+const CONTACT_EMAIL =
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "sjnigam10@gmail.com";
+
+async function sendViaFormSubmit(data: Inputs) {
+  const response = await fetch(
+    `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        _subject: `Portfolio message from ${data.name}`,
+        _template: "table",
+        _captcha: "false",
+      }),
+    },
+  );
+
+  const result = await response.json();
+  const ok =
+    result.success === true ||
+    result.success === "true" ||
+    result.message?.toLowerCase().includes("submitted successfully");
+
+  if (result.message?.includes("Activation")) {
+    throw new Error(
+      "Email not activated yet. Check your inbox for a FormSubmit activation link.",
+    );
+  }
+
+  if (!response.ok || !ok) {
+    throw new Error(result.message || "FormSubmit failed");
+  }
+}
+
 export default function ContactForm() {
   const {
     register,
@@ -36,21 +76,22 @@ export default function ContactForm() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        toast.error(
-          typeof result.error === "string"
-            ? result.error
-            : "An error occurred! Please try again later.",
-        );
+      if (response.ok) {
+        toast.success("Message sent successfully!");
+        reset();
         return;
       }
 
+      // Server failed (e.g. bad Resend key) — fall back to FormSubmit in browser
+      await sendViaFormSubmit(data);
       toast.success("Message sent successfully!");
       reset();
-    } catch {
-      toast.error("Failed to send. Please email sjnigam10@gmail.com directly.");
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Failed to send. Please email sjnigam10@gmail.com directly.";
+      toast.error(message);
     }
   };
 

@@ -36,7 +36,8 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error:
-          "Failed to send message. Email sjnigam10@gmail.com directly, or add RESEND_API_KEY in Vercel env vars.",
+          msg ||
+          "Failed to send message. Email sjnigam10@gmail.com directly.",
       },
       { status: 500 },
     );

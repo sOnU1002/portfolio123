@@ -7,6 +7,32 @@ export type ContactPayload = {
   message: string;
 };
 
+const DEFAULT_CONTACT_EMAIL = "sjnigam10@gmail.com";
+
+function getContactEmail() {
+  return process.env.CONTACT_EMAIL?.trim() || DEFAULT_CONTACT_EMAIL;
+}
+
+function getSiteUrl() {
+  return (
+    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    (process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "https://portfolio-saket-tan.vercel.app")
+  );
+}
+
+function isFormSubmitSuccess(result: {
+  success?: boolean | string;
+  message?: string;
+}) {
+  return (
+    result.success === true ||
+    result.success === "true" ||
+    result.message?.toLowerCase().includes("submitted successfully")
+  );
+}
+
 async function sendViaResend(data: ContactPayload) {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   if (!apiKey) throw new Error("RESEND_NOT_CONFIGURED");
@@ -14,11 +40,10 @@ async function sendViaResend(data: ContactPayload) {
   const resend = new Resend(apiKey);
   const fromEmail =
     process.env.RESEND_FROM_EMAIL || "Portfolio <onboarding@resend.dev>";
-  const toEmail = process.env.CONTACT_EMAIL || "sjnigam10@gmail.com";
 
   const { data: emailData, error } = await resend.emails.send({
     from: fromEmail,
-    to: toEmail,
+    to: getContactEmail(),
     replyTo: data.email,
     subject: `Portfolio message from ${data.name}`,
     react: ContactFormEmail({
@@ -56,8 +81,8 @@ async function sendViaWeb3Forms(data: ContactPayload) {
   }
 }
 
-async function sendViaFormSubmit(data: ContactPayload) {
-  const toEmail = process.env.CONTACT_EMAIL || "sjnigam10@gmail.com";
+export async function sendViaFormSubmit(data: ContactPayload) {
+  const toEmail = getContactEmail();
   const siteUrl = getSiteUrl();
 
   const response = await fetch(
@@ -81,36 +106,63 @@ async function sendViaFormSubmit(data: ContactPayload) {
     },
   );
 
-  const result = await response.json();
+  let result: { success?: boolean | string; message?: string };
+  try {
+    result = await response.json();
+  } catch {
+    throw new Error("FormSubmit returned an invalid response");
+  }
 
   if (result.message?.includes("Activation")) {
     throw new Error("FORM_SUBMIT_ACTIVATION_REQUIRED");
   }
 
-  if (!response.ok || result.success === "false" || result.success === false) {
+  if (!response.ok || !isFormSubmitSuccess(result)) {
     throw new Error(result.message || "FormSubmit failed");
   }
 }
 
-function getSiteUrl() {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL ||
-    (process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "https://portfolio-saket-tan.vercel.app")
-  );
-}
-
 export async function sendContactEmail(data: ContactPayload) {
+  const errors: string[] = [];
+
   if (process.env.RESEND_API_KEY?.trim()) {
-    await sendViaResend(data);
-    return;
+    try {
+      await sendViaResend(data);
+      return;
+    } catch (error) {
+      errors.push(
+        `Resend: ${error instanceof Error ? error.message : "failed"}`,
+      );
+    }
   }
 
   if (process.env.WEB3FORMS_ACCESS_KEY?.trim()) {
-    await sendViaWeb3Forms(data);
-    return;
+    try {
+      await sendViaWeb3Forms(data);
+      return;
+    } catch (error) {
+      errors.push(
+        `Web3Forms: ${error instanceof Error ? error.message : "failed"}`,
+      );
+    }
   }
 
-  await sendViaFormSubmit(data);
+  try {
+    await sendViaFormSubmit(data);
+    return;
+  } catch (error) {
+    errors.push(
+      `FormSubmit: ${error instanceof Error ? error.message : "failed"}`,
+    );
+  }
+
+  throw new Error(errors.join(" | ") || "All email providers failed");
+}
+
+export function getPublicContactEmail() {
+  return (
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() ||
+    process.env.CONTACT_EMAIL?.trim() ||
+    DEFAULT_CONTACT_EMAIL
+  );
 }
