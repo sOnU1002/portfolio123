@@ -18,7 +18,7 @@ const ROLES = [
 ];
 
 const STATS = [
-  { value: "8+", label: "Projects" },
+  { value: "20+", label: "Projects" },
   { value: "3", label: "AI Certs" },
   { value: "2+", label: "Years Exp" },
   { value: "3", label: "Freelance Apps" },
