@@ -3,56 +3,56 @@ import {
   getFallbackResponse,
   SAKET_KNOWLEDGE,
 } from "@/lib/knowledge";
+import { streamTextResponse } from "@/lib/stream";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 import OpenAI from "openai";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 const SYSTEM_PROMPT = `You are Saket Nigam's AI portfolio assistant. Answer questions about Saket professionally, concisely, and helpfully using ONLY the knowledge below. Use markdown formatting. If asked about contacting Saket, mention sjnigam10@gmail.com and the contact page. For resume, link to /resume.pdf.
 
 ${SAKET_KNOWLEDGE}`;
 
 function getAIClient() {
-  if (process.env.GROQ_API_KEY) {
-    return new OpenAI({
-      apiKey: process.env.GROQ_API_KEY,
-      baseURL: "https://api.groq.com/openai/v1",
-    });
+  const groqKey = process.env.GROQ_API_KEY?.trim();
+  const openaiKey = process.env.OPENAI_API_KEY?.trim();
+
+  if (groqKey) {
+    return {
+      client: new OpenAI({
+        apiKey: groqKey,
+        baseURL: "https://api.groq.com/openai/v1",
+      }),
+      model: "llama-3.3-70b-versatile",
+    };
   }
 
-  if (process.env.OPENAI_API_KEY) {
-    return new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  if (openaiKey) {
+    return {
+      client: new OpenAI({ apiKey: openaiKey }),
+      model: "gpt-4o-mini",
+    };
   }
 
   return null;
 }
 
-function getModel() {
-  if (process.env.GROQ_API_KEY) return "llama-3.3-70b-versatile";
-  return "gpt-4o-mini";
-}
-
 export async function POST(request: Request) {
+  let lastMessage = "";
+
   try {
     const { messages } = await request.json();
-    const lastMessage = messages[messages.length - 1]?.content || "";
+    lastMessage = messages[messages.length - 1]?.content || "";
 
-    const client = getAIClient();
+    const ai = getAIClient();
 
-    if (!client) {
-      const answer = getFallbackResponse(lastMessage);
-      const stream = new ReadableStream({
-        start(controller) {
-          const encoder = new TextEncoder();
-          controller.enqueue(encoder.encode(answer));
-          controller.close();
-        },
-      });
-      return new StreamingTextResponse(stream);
+    if (!ai) {
+      return streamTextResponse(getFallbackResponse(lastMessage));
     }
 
-    const response = await client.chat.completions.create({
-      model: getModel(),
+    const response = await ai.client.chat.completions.create({
+      model: ai.model,
       stream: true,
       messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       temperature: 0.7,
@@ -63,21 +63,19 @@ export async function POST(request: Request) {
     return new StreamingTextResponse(stream);
   } catch (error) {
     console.error("Chat API error:", error);
-    const stream = new ReadableStream({
-      start(controller) {
-        const encoder = new TextEncoder();
-        controller.enqueue(
-          encoder.encode(
-            "Sorry, I encountered an error. Please try again or use the [contact form](/contact) to reach Saket directly.",
-          ),
-        );
-        controller.close();
-      },
-    });
-    return new StreamingTextResponse(stream);
+    return streamTextResponse(
+      lastMessage
+        ? getFallbackResponse(lastMessage)
+        : "Sorry, I encountered an error. Please try again or email Saket at sjnigam10@gmail.com.",
+    );
   }
 }
 
 export async function GET() {
-  return Response.json({ suggestions: CHAT_SUGGESTIONS });
+  return Response.json({
+    suggestions: CHAT_SUGGESTIONS,
+    hasAI: Boolean(
+      process.env.GROQ_API_KEY?.trim() || process.env.OPENAI_API_KEY?.trim(),
+    ),
+  });
 }
