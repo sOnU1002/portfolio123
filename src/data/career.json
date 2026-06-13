@@ -1,26 +1,32 @@
 {
   "career": [
     {
-      "name": "Smart Tech LLC",
-      "href": "https://smarttechks.com/",
-      "title": "Data & AI Engineer",
+      "name": "DataEngite",
+      "href": "",
+      "title": "Data Engineer",
       "logo": "/1.png",
-      "start": "Apr 2023",
+      "start": "Apr 2025",
       "description": [
-        "Spearheaded the development of an AI-powered healthcare application, integrating machine learning models for accurate medical diagnosis and real-time data analysis.",
-        "Utilized advanced cloud technologies, including Microsoft Azure, Snowflake, and Databricks, to optimize data processing, ensure scalability, and streamline application deployment."
+        "Built ETL pipelines for financial and banking datasets using Python and SQL.",
+        "Automated data ingestion workflows with AWS Lambda, S3, and EC2.",
+        "Managed large structured datasets in Snowflake for reporting and reconciliation.",
+        "Optimized SQL queries for financial reporting workflows.",
+        "Processed datasets in Databricks into structured layers for downstream analytics."
       ]
     },
     {
-      "name": "Foxus",
-      "href": "",
-      "title": "Frontend Developer",
-      "logo": "public/1.jpg",
-      "start": "Dec 2023",
-      "end": "Jan 2024",
+      "name": "Smart Tech LLC",
+      "href": "https://smarttechks.com/",
+      "title": "Data & AI Associate Engineer",
+      "logo": "/1.png",
+      "start": "Mar 2024",
+      "end": "Dec 2024",
       "description": [
-        "Played a key role in designing and developing dynamic, user-friendly web applications using React, JavaScript, and CSS, ensuring cross-platform compatibility.",
-        "Focused on delivering exceptional user experiences by creating responsive interfaces and implementing seamless interactive features."
+        "Developed healthcare applications using Python and machine learning models.",
+        "Built models for medical image analysis and disease prediction.",
+        "Implemented LLM-based systems for answering medical-related queries.",
+        "Used Databricks (PySpark) for data processing and ML dataset preparation.",
+        "Developed frontend interfaces using React and JavaScript."
       ]
     }
   ]

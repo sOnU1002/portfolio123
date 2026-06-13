@@ -1,0 +1,105 @@
+{
+  "categories": [
+    {
+      "name": "Generative AI & LLMs",
+      "icon": "brain",
+      "skills": [
+        "GPT-4 / GPT-4o",
+        "OpenAI API",
+        "LangChain",
+        "RAG Pipelines",
+        "Prompt Engineering",
+        "AI Agents",
+        "Embeddings",
+        "Fine-tuning",
+        "Vector Search"
+      ]
+    },
+    {
+      "name": "Machine Learning",
+      "icon": "cpu",
+      "skills": [
+        "PyTorch",
+        "TensorFlow",
+        "HuggingFace",
+        "Computer Vision",
+        "NLP",
+        "Medical AI",
+        "Deep Learning",
+        "Model Deployment"
+      ]
+    },
+    {
+      "name": "Data Engineering",
+      "icon": "database",
+      "skills": [
+        "Python",
+        "SQL",
+        "PySpark",
+        "Databricks",
+        "Snowflake",
+        "ETL Pipelines",
+        "ChromaDB",
+        "Pinecone",
+        "Data Modeling"
+      ]
+    },
+    {
+      "name": "Cloud & AI Infra",
+      "icon": "cloud",
+      "skills": [
+        "AWS Bedrock",
+        "AWS Lambda",
+        "Azure OpenAI",
+        "S3 & EC2",
+        "Docker",
+        "Vercel",
+        "Git / GitHub"
+      ]
+    },
+    {
+      "name": "Full Stack Dev",
+      "icon": "code",
+      "skills": [
+        "Next.js 14",
+        "React",
+        "TypeScript",
+        "Node.js",
+        "FastAPI",
+        "PostgreSQL",
+        "REST APIs",
+        "Tailwind CSS"
+      ]
+    },
+    {
+      "name": "AI Product Building",
+      "icon": "sparkles",
+      "skills": [
+        "Chatbot Development",
+        "Document Intelligence",
+        "Semantic Search",
+        "AI SaaS",
+        "Healthcare AI",
+        "Real-time Streaming",
+        "Vercel AI SDK"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Databricks Generative AI Engineer",
+      "issuer": "Databricks",
+      "image": "/associate.png"
+    },
+    {
+      "name": "Azure AI Engineer Associate",
+      "issuer": "Microsoft",
+      "image": "/azure.png"
+    },
+    {
+      "name": "Zscaler Zero Trust Associate",
+      "issuer": "Zscaler Academy",
+      "image": "/certification.png"
+    }
+  ]
+}

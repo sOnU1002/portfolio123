@@ -1,20 +1,96 @@
 {
   "projects": [
     {
-      "name": "Climate prediction- Weatherly",
-      "description": "Developed Weatherly, a user-friendly weather application with real-time updates, detailed forecasts, and an integrated chatbot for personalized weather queries.",
+      "name": "PreTest Diagnostic",
+      "description": "Full-stack healthcare diagnostics platform for Pune & Maharashtra — home blood test booking, WhatsApp integration, health shield packages, and digital report delivery. Built as a freelance project.",
+      "href": "https://pretestdiagnostic.me/",
+      "image": "",
+      "gradient": "from-emerald-500 to-teal-600",
+      "tags": [
+        "Next.js",
+        "React",
+        "Healthcare",
+        "Full Stack",
+        "Freelance"
+      ],
+      "links": [
+        {
+          "name": "Live Site",
+          "href": "https://pretestdiagnostic.me/",
+          "icon": "globe"
+        }
+      ]
+    },
+    {
+      "name": "Intrro.ai",
+      "description": "AI-powered networking platform that matches professionals at events and communities. Generates personalized intro openers, follow-up prompts, and mutual-fit connections using intent-based matching.",
+      "href": "https://www.intrro.ai/",
+      "image": "",
+      "gradient": "from-violet-500 to-purple-600",
+      "tags": [
+        "AI",
+        "Next.js",
+        "LLM",
+        "Networking",
+        "Freelance"
+      ],
+      "links": [
+        {
+          "name": "Live Site",
+          "href": "https://www.intrro.ai/",
+          "icon": "globe"
+        }
+      ]
+    },
+    {
+      "name": "BuyerSidee",
+      "description": "Buyer-focused e-commerce platform streamlining the purchasing experience with smart product discovery, seamless checkout flows, and a modern responsive interface.",
+      "href": "https://buyersidee.com/",
+      "image": "",
+      "gradient": "from-blue-500 to-indigo-600",
+      "tags": [
+        "React",
+        "E-Commerce",
+        "Full Stack",
+        "Freelance"
+      ],
+      "links": [
+        {
+          "name": "Live Site",
+          "href": "https://buyersidee.com/",
+          "icon": "globe"
+        }
+      ]
+    },
+    {
+      "name": "Financial Document Intelligence",
+      "description": "RAG-based system to extract insights from financial documents using LangChain and ChromaDB. Enables semantic search and Q&A across financial reports with structured data integration.",
+      "image": "/rrf.png",
+      "tags": [
+        "Python",
+        "LangChain",
+        "ChromaDB",
+        "LLM",
+        "RAG"
+      ],
+      "links": [
+        {
+          "name": "Source",
+          "href": "https://github.com/sOnU1002",
+          "icon": "github"
+        }
+      ]
+    },
+    {
+      "name": "Climate Prediction — Weatherly",
+      "description": "Real-time weather application with detailed forecasts and an integrated AI chatbot for personalized weather queries powered by Google Gemini and vector search.",
       "image": "/2.png",
       "tags": [
         "Python",
         "FastAPI",
-        "Docker",
         "React",
         "VectorDB",
-        "Google Gemini",
-        "HTML",
-        "Javascript",
-        "CSS"
-        
+        "Google Gemini"
       ],
       "links": [
         {
@@ -25,18 +101,25 @@
       ]
     },
     {
+      "name": "Discern — Medical AI",
+      "description": "AI-powered chest X-ray analysis for accurate disease prediction with noise elimination filters. Provides radiologist-like second opinions for common chest diseases.",
+      "href": "https://tedawf-dot-com.netlify.app",
+      "image": "/4.png",
+      "tags": ["Python", "Deep Learning", "Gradio", "Healthcare"],
+      "links": [
+        {
+          "name": "Source",
+          "href": "https://github.com/sOnU1002/DISCERN",
+          "icon": "github"
+        }
+      ]
+    },
+    {
       "name": "Cube",
-      "description": "Cube helps organize educational chat groups by introducing sub-grouping, making it easier to find important messages like announcements and timetables. It reduces clutter, improving communication for both educators and students.",
+      "description": "Educational chat group organizer with sub-grouping for announcements and timetables. Reduces clutter and improves communication for educators and students.",
       "href": "https://cubechat.netlify.app/",
       "image": "/7.png",
-      "tags": [
-        "NextJS",
-        "TailwindCSS",
-        "React",
-        "Express.js",
-        "Netlify",
-        "Javascript"
-      ],
+      "tags": ["Next.js", "TailwindCSS", "React", "Express.js"],
       "links": [
         {
           "name": "Website",
@@ -46,45 +129,15 @@
       ]
     },
     {
-      "name": "Discern",
-      "description": "An AI-powered solution for accurate disease prediction and noise elimination using filters in Chest X-rays. Providing a radiologist-like second opinion, it enhances reliability in diagnosing common chest diseases.",
-      "href": "https://tedawf-dot-com.netlify.app",
-      "image": "/4.png",
-      "tags": ["Python", "Gradio"],
-      "links": [
-       
-        {
-          "name": "Source",
-          "href": "https://github.com/sOnU1002/DISCERN",
-          "icon": "github"
-        }
-      ]
-    },
-    {
-      "name": "Equikey (Final Year)",
-      "description": "A Blockchain Based Real Estate Marketplace.",
+      "name": "EquiKey — Blockchain Real Estate",
+      "description": "Blockchain-based real estate marketplace enabling secure property transactions with smart contracts.",
       "href": "https://github.com/Kunj-Pate1/EquiKey",
       "image": "/8.png",
-      "tags": ["Solidity", "Javascript", "Next.js", "Typescript"],
+      "tags": ["Solidity", "Next.js", "TypeScript", "Blockchain"],
       "links": [
-        
         {
-          "name": "Equikey",
+          "name": "Source",
           "href": "https://github.com/Kunj-Pate1/EquiKey",
-          "icon": "github"
-        }
-      ]
-    },
-    {
-      "name": "Notice Board (2nd Year)",
-      "description": "Online Notice Board streamlines college communication by providing a centralized platform for real-time updates on notices, eliminating issues like overlapping posts and missed information",
-      "href": "https://github.com/sOnU1002/Notice-Board",
-      "image": "/5.png",
-      "tags": ["HTML", "Bootstrap", "CSS", "PHP"],
-      "links": [
-        {
-          "name": "Trailer",
-          "href": "https://github.com/sOnU1002/Notice-Board",
           "icon": "github"
         }
       ]

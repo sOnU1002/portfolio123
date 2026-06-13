@@ -23,8 +23,10 @@ export default function ChatMessage({
       {isBot && <Bot className="mr-2" />}
       <div
         className={cn(
-          "rounded border px-3 py-2 max-w-64",
-          isBot ? "bg-background" : "bg-foreground text-background",
+          "rounded-xl px-3 py-2 max-w-[280px] text-sm",
+          isBot
+            ? "border border-orange-200 bg-orange-50 text-foreground dark:border-border dark:bg-background"
+            : "bg-orange-500 text-white dark:bg-foreground dark:text-background",
         )}
       >
         <Markdown

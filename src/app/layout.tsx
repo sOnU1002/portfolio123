@@ -1,21 +1,30 @@
+import AIBackground from "@/components/AIBackground";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Providers from "@/components/Providers";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Calistoga, Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const calistoga = Calistoga({
+const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["400"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  title: "Saket Thoughts",
-  description: "My personal site to showcase my developer work and opinions.",
+  title: "Saket Nigam — Data & AI Engineer",
+  description:
+    "Portfolio of Saket Nigam — Data & AI Engineer building intelligent systems, LLM applications, and cloud data pipelines.",
+  openGraph: {
+    title: "Saket Nigam — Data & AI Engineer",
+    description:
+      "Building AI-powered applications, RAG pipelines, and intelligent systems.",
+    url: "https://portfolio-saket-tan.vercel.app",
+    siteName: "Saket Nigam Portfolio",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -24,18 +33,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "mx-auto flex min-h-screen max-w-3xl flex-col px-8 font-sans antialiased",
+          "relative min-h-screen font-sans antialiased",
           inter.variable,
-          calistoga.variable,
+          jetbrains.variable,
         )}
       >
         <Providers>
-          <Header />
-          <main className="grow">{children}</main>
-          <Footer />
+          <AIBackground />
+          <div className="relative mx-auto flex min-h-screen max-w-6xl flex-col px-5 sm:px-8">
+            <Header />
+            <main className="grow">{children}</main>
+            <Footer />
+          </div>
         </Providers>
       </body>
     </html>

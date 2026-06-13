@@ -3,13 +3,13 @@
     {
       "name": "University of Mumbai",
       "href": "https://www.apsit.edu.in/",
-      "title": "BS in Computer Science in Real-Time Interactive Simulation",
+      "title": "B.E. in Computer Engineering — CGPA 9.03",
       "logo": "/apsit.jpg",
-      "start": "Feb 2021",
-      "end": "Apr 2024",
+      "start": "2021",
+      "end": "2024",
       "description": [
-        "Graduated with a Minor in AIML",
-        "Executive in IIT Bombay",
+        "Honours in Artificial Intelligence and Machine Learning",
+        "Executive at IIT Bombay",
         "3-time Hackathon Winner"
       ],
       "links": [
@@ -26,13 +26,15 @@
       ]
     },
     {
-      "name": "Mumbai University",
+      "name": "University of Mumbai",
       "href": "https://www.apsit.edu.in/",
-      "title": "Honor and Minor in Artificial Intelligence and Machine Learning",
+      "title": "Honours in Artificial Intelligence & Machine Learning",
       "logo": "/apsit.jpg",
-      "start": "Apr 2014",
-      "end": "May 2017",
-      "description": []
+      "start": "2022",
+      "end": "2024",
+      "description": [
+        "Specialized coursework in deep learning, NLP, and computer vision"
+      ]
     }
   ]
 }

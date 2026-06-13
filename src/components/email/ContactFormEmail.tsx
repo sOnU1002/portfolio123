@@ -9,19 +9,23 @@ const ContactFormEmail: React.FC<Readonly<ContactFormEmailProps>> = ({
   email,
   message,
 }) => (
-  <div>
-    <p>Hey {name},</p>
+  <div style={{ fontFamily: "sans-serif", maxWidth: "600px" }}>
+    <h2 style={{ color: "#7c3aed" }}>New Portfolio Message</h2>
     <p>
-      <strong>Your Email:</strong>
+      <strong>From:</strong> {name}
     </p>
-    <p>{email}</p>
     <p>
-      <strong>Your Message:</strong>
+      <strong>Email:</strong> {email}
     </p>
-    <p>{message}</p>
-    <hr />
-    <p>Thank you for your message, {name}! I will reply as soon as I can.</p>
-    <p>&copy; 2024 saket Nigam</p>
+    <hr style={{ border: "1px solid #e5e7eb", margin: "16px 0" }} />
+    <p>
+      <strong>Message:</strong>
+    </p>
+    <p style={{ whiteSpace: "pre-wrap" }}>{message}</p>
+    <hr style={{ border: "1px solid #e5e7eb", margin: "16px 0" }} />
+    <p style={{ color: "#6b7280", fontSize: "12px" }}>
+      Sent from portfolio-saket-tan.vercel.app
+    </p>
   </div>
 );
 

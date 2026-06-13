@@ -1,98 +1,66 @@
+import AnimatedSection from "@/components/AnimatedSection";
 import Experience from "@/components/Experience";
+import Hero from "@/components/Hero";
 import LinkWithIcon from "@/components/LinkWithIcon";
 import Posts from "@/components/Posts";
 import Projects from "@/components/Projects";
-import Socials from "@/components/Socials";
-import { Button } from "@/components/ui/Button";
+import SectionHeader from "@/components/SectionHeader";
+import Skills from "@/components/Skills";
 import { getPosts } from "@/lib/posts";
-import {
-  ArrowDownRight,
-  ArrowRightIcon,
-  FileDown
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { ArrowRightIcon } from "lucide-react";
 import path from "path";
 
 const blogDirectory = path.join(process.cwd(), "content");
-const TED_BIRTH_YEAR = 2002;
-const LIMIT = 2; // max show 2
+const LIMIT = 3;
 
 export default async function Home() {
   const posts = await getPosts(blogDirectory, LIMIT);
 
   return (
-    <article className="mt-8 flex flex-col gap-16 pb-16">
-      <section className="flex flex-col items-start gap-8 md:flex-row-reverse md:items-center md:justify-between">
-        <Image
-          className="rounded-lg"
-          src="/Saket.jpeg"
-          alt="Photo of saket"
-          width={175}
-          height={175}
-          priority
-        />
-        <div className="flex flex-col">
-          <h1 className="title text-5xl">hi Saket here 👋</h1>
-          <p className="mt-4 font-light">
-            {/* Update my age */}
-            {new Date().getFullYear() - TED_BIRTH_YEAR}
-            -year-old <s>game</s> software developer from India 🇮🇳
-          </p>
-          <p className="mt-2 font-light">
-            I like to develop full-stack, drink instant coffee and get coding
-            advice from me,{" "}
-            <Link
-              href="https://www.instagram.com/_saket_nigam/"
-              target="_blank"
-              className="link font-semibold"
-            >
-              Follow me insta.
-            </Link>
-          </p>
-          <div className="mt-4 flex items-end gap-1">
-            <p className="font-semibold">Ask the chatbot anything about me</p>
-            <ArrowDownRight className="size-5 animate-bounce" />
-          </div>
-          <section className="mt-8 flex items-center gap-8">
-            <Link href="/resume.pdf" target="_blank">
-              <Button variant="outline">
-                <span className="font-semibold">Resume</span>
-                <FileDown className="ml-2 size-5" />
-              </Button>
-            </Link>
-            <Socials />
-          </section>
-        </div>
-      </section>
+    <article className="flex flex-col gap-24 pb-20">
+      <Hero />
 
-      <Experience />
+      <AnimatedSection>
+        <Skills />
+      </AnimatedSection>
 
-      <section className="flex flex-col gap-8">
-        <div className="flex justify-between">
-          <h2 className="title text-2xl sm:text-3xl">featured projects</h2>
+      <AnimatedSection>
+        <Experience />
+      </AnimatedSection>
+
+      <AnimatedSection className="flex flex-col gap-8">
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <SectionHeader
+            label="Portfolio"
+            title="Featured Projects"
+            description="Freelance production apps and AI builds — from healthcare to networking."
+          />
           <LinkWithIcon
             href="/projects"
             position="right"
             icon={<ArrowRightIcon className="size-5" />}
-            text="view more"
+            text="view all"
           />
         </div>
         <Projects limit={LIMIT} />
-      </section>
+      </AnimatedSection>
 
-      <section className="flex flex-col gap-8">
-        <div className="flex justify-between">
-          <h2 className="title text-3xl">recent posts</h2>
+      <AnimatedSection className="flex flex-col gap-8">
+        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <SectionHeader
+            label="Blog"
+            title="Recent Posts"
+            description="Thoughts on AI, certifications, and engineering."
+          />
           <LinkWithIcon
             href="/blog"
             position="right"
             icon={<ArrowRightIcon className="size-5" />}
-            text="view more"
+            text="view all"
           />
         </div>
         <Posts posts={posts} />
-      </section>
+      </AnimatedSection>
     </article>
   );
 }
