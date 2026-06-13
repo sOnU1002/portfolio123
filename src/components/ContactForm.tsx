@@ -70,19 +70,7 @@ export default function ContactForm() {
 
   const processForm: SubmitHandler<Inputs> = async (data) => {
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        toast.success("Message sent successfully!");
-        reset();
-        return;
-      }
-
-      // Server failed (e.g. bad Resend key) — fall back to FormSubmit in browser
+      // FormSubmit works reliably from the browser (server-side calls fail on Vercel)
       await sendViaFormSubmit(data);
       toast.success("Message sent successfully!");
       reset();
